@@ -40,7 +40,7 @@ function DreamEntryForm({ onSave }) {
       <textarea
         id="dream-input"
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => setText(e.target.value)} // <-- AQUÍ ESTÁ LA CORRECCIÓN
         placeholder="Enter keywords or a description... e.g., flying over a blue ocean with a dog..."
       ></textarea>
       
