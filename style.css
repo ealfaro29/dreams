@@ -1,11 +1,18 @@
 :root {
-    /* Based on Apple's Human Interface Guidelines */
+    /* Apple Human Interface Guidelines (Light Mode, Gray Accent) */
     --system-background: #f2f2f7;
     --secondary-background: #ffffff;
     --tertiary-background: #e5e5ea;
-    --accent-blue: #007aff;
+    --separator-color: #dcdcdc;
+    
+    --accent-gray-light: #e5e5ea;
+    --accent-gray-medium: #8e8e93;
+    --accent-gray-dark: #3a3a3c;
+
     --primary-text: #1d1d1f;
-    --secondary-text: #8a8a8e;
+    --secondary-text: #6e6e73;
+    
+    /* System Font Stack */
     --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
@@ -14,122 +21,134 @@ body {
     color: var(--primary-text);
     font-family: var(--font-family);
     margin: 0;
-    padding: 20px;
+    padding: 25px;
+    -webkit-font-smoothing: antialiased; /* Smoother fonts on WebKit browsers */
+    -moz-osx-font-smoothing: grayscale; /* Smoother fonts on Firefox */
 }
 
 .container {
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
 header {
-    text-align: center;
-    padding-bottom: 1rem;
+    text-align: left; /* Align header text to the left */
+    padding-bottom: 1.5rem;
     margin-bottom: 2rem;
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 2.25rem; /* Large, bold title like in Settings */
     font-weight: 700;
-    margin: 0;
+    margin: 0 0 5px 0;
 }
 
 header p {
     color: var(--secondary-text);
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin: 0;
 }
 
-.dream-entry-form,
-.dream-item {
+.dream-entry-form {
     background-color: var(--secondary-background);
     border-radius: 12px;
-    margin-bottom: 15px;
-    padding: 20px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2.5rem;
+    border: 1px solid var(--separator-color);
 }
 
 textarea#dream-input {
     width: 100%;
-    height: 120px;
-    background-color: var(--system-background);
-    border: 1px solid var(--tertiary-background);
-    border-radius: 8px;
+    height: 140px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--separator-color);
+    border-radius: 0;
     color: var(--primary-text);
-    padding: 12px;
-    font-size: 1rem;
+    padding: 20px;
+    font-size: 1.05rem;
     font-family: var(--font-family);
     box-sizing: border-box;
-    resize: vertical;
+    resize: none; /* Disable resizing for a cleaner look */
 }
 
 textarea#dream-input:focus {
     outline: none;
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
 }
 
+.emoji-picker {
+    padding: 15px 20px;
+}
 
 .emoji-picker h3 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-weight: 600;
-    color: var(--primary-text);
+    margin: 10px 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--secondary-text);
+    text-transform: uppercase; /* Common in iOS section headers */
 }
 
 .emoji-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
     min-height: 40px;
-    background-color: var(--tertiary-background);
-    padding: 10px;
-    border-radius: 8px;
+    padding: 10px 0;
 }
 
 .emoji {
-    font-size: 1.8rem;
+    font-size: 2rem;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.15s ease-out;
 }
 
 .emoji:hover {
-    transform: scale(1.2);
+    transform: scale(1.25);
 }
 
 button#save-dream-btn {
-    width: 100%;
-    padding: 15px;
-    background-color: var(--accent-blue);
+    display: block; /* Make it a block element to control margins */
+    width: calc(100% - 40px); /* Full width minus padding */
+    margin: 0 20px 20px 20px; /* Add margin */
+    padding: 14px;
+    background-color: var(--accent-gray-dark);
     border: none;
     border-radius: 8px;
     color: white;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 20px;
     transition: background-color 0.2s;
 }
 
 button#save-dream-btn:hover {
-    background-color: #0056b3;
+    background-color: #5a5a5c;
 }
 
 .dream-log h2 {
-    text-align: center;
-    font-size: 1.8rem;
+    text-align: left;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    padding-left: 5px;
 }
 
 .dream-item {
-    border: none; /* remove the old border */
+    background-color: var(--secondary-background);
+    padding: 18px 20px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border: 1px solid var(--separator-color);
+    transition: background-color 0.2s;
+}
+
+.dream-item:hover {
+    background-color: #fafafa;
 }
 
 .dream-item .date {
     font-size: 0.9em;
-    font-style: normal;
     font-weight: 500;
-    color: var(--secondary-text);
+    color: var(--accent-gray-medium);
 }
 
 .dream-item .emojis {
@@ -138,7 +157,7 @@ button#save-dream-btn:hover {
 }
 
 .dream-item .text {
-    margin-top: 10px;
-    line-height: 1.6;
-    color: var(--primary-text);
+    margin-top: 8px;
+    line-height: 1.5;
+    color: var(--secondary-text);
 }
